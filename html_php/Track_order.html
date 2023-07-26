@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Online Shopping
+        </title>
+        <link rel = "icon" href = Logo.jpg type = "image/x-icon">
+        <link rel="stylesheet" type="text/css" href="../css/test.css" />
+        <link rel="stylesheet" type="text/css" href="../css/styles.css" />
+
+        <style>
+            input[type="submit"] {
+                  width: 150px; 
+                  height: 40px; 
+                  font-size: large;
+                  font-family: Georgia, 'Times New Roman', Times, serif;
+            }
+    
+            .input{
+                width: 200px; 
+                height: 30px; 
+                font-size: large;
+                font-family: Georgia, 'Times New Roman', Times, serif;
+            }
+            </style>
+    </head>
+
+    <body>
+
+        <div class="header">
+            <div class="logocontainer">
+            <a href="Home.php">
+              <img class="logoimg" src="../images/LogoFinal.jpg" alt="Logo">
+            </a>
+              <h2>The largest online shopping platform in Sri Lanka.</h2>
+            </div>
+        
+            <ul class="login">
+              <li><a href="Login.html">Log in</a></li>
+              <li><a href="Signup.html">Sign up</a></li>
+              <li><a href="admin.html">Admin</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <ul class="NavigationBar">
+                <li ><a href=Home.php> Home </a></li>
+                <li ><a href=cart.php> Cart </a></li>
+                <li ><a href=orderNow.php> Order Now </a></li>
+                <li ><a href=Track_order.html> Track the Order </a></li>
+                <li ><a href=contacts.html> Contacts Us </a></li>
+                <li ><a href=Rating.html> Rate Us </a></li>
+                <li ><a href=Aboutus.html> About Us </a></li>   
+            </ul>    
+        </div>
+
+
+        <br><br><br>
+        <form action="Track_order.php" method = "post">
+        <div class="form">
+            <label for="order no" class="input">Order No : &nbsp;</label>
+            <input type="text" name="OrderNo" class="input" required><br><br><br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;
+            <input type="submit" value=" Submit" class="input"> <br>
+        </div>
+        </form>
+
+    <br><br>
+    </body>
+
+    <footer>  
+    <p>&copy; 2023 Online Shopping, Sri Lanka, All rights reserved.</p>
+    </footer>
+
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>
+  Online Shopping
+</title>
+<link rel = "icon" href = Logo.jpg type = "image/x-icon">
+<link rel="stylesheet" type="text/css" href="../css/test.css" />
+<link rel="stylesheet" type="text/css" href="../css/styles.css" />
+<link rel="stylesheet" type="text/css" href="../css/Login.css" />
+</head>
+
+<body>
+
+<div class="header">
+  <div class="logocontainer">
+  <a href="Home.php">
+    <img class="logoimg" src="../images/LogoFinal.jpg" alt="Logo">
+  </a>
+    <h2>The largest online shopping platform in Sri Lanka.</h2>
+  </div>
+
+    <ul class="login">
+      <li><a href="Login.html">Log in</a></li>
+      <li><a href="Signup.html">Sign up</a></li>
+      <li><a href="admin.html">Admin</a></li>
+    </ul>
+</div>
+
+<div>
+    <ul class="NavigationBar">
+        <li ><a href=Home.php> Home </a></li>
+        <li ><a href=cart.php> Cart </a></li>
+        <li ><a href=orderNow.php> Order Now </a></li>
+        <li ><a href=Track_order.html> Track the Order </a></li>
+        <li ><a href=contacts.html> Contacts Us </a></li>
+        <li ><a href=Rating.html> Rate Us </a></li>
+        <li ><a href=Aboutus.html> About Us </a></li>   
+    </ul>    
+</div>
+
+<br><br><br><br>
+        
+
+
+    <div class="container">
+        <form action="Login.php" method="post">
+          <div>
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Customer ID" name="CustomerID" required><br><br>
+      
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" required>
+      
+            <br><br>
+              
+            <button type="submit" class="loginbtn">Log in</button>
+          </div>
+        </form>
+      </div>
+
+
+
+<footer>
+    <p>&copy; 2023 Online Shopping, Sri Lanka </p>
+</footer>
+
+
+</body>
+</html>

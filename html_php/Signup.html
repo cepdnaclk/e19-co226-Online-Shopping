@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Online Shopping</title>
+  <link rel="icon" href="Logo.jpg" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="../css/test.css" />
+  <link rel="stylesheet" type="text/css" href="../css/styles.css" />
+
+  <script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+      const customerIDInput = document.getElementById("customerID");
+      const messageElement = document.getElementById("customerIDMessage");
+
+      customerIDInput.addEventListener("input", () => {
+        const customerID = customerIDInput.value;
+
+        // Make an AJAX request to the server
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "checkCustomerID.php", true);
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            const response = JSON.parse(xhr.responseText);
+
+            // Display the response message in the UI
+            messageElement.textContent = response.message;
+            messageElement.style.color = response.available ? "green" : "red";
+          }
+        };
+
+        // Send the customerID to the server
+        xhr.send("customerID=" + customerID);
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <div class="header">
+    <div class="logocontainer">
+    <a href="Home.php">
+      <img class="logoimg" src="../images/LogoFinal.jpg" alt="Logo">
+    </a>
+      <h2>The largest online shopping platform in Sri Lanka.</h2>
+    </div>
+
+    <ul class="login">
+      <li><a href="Login.html">Log in</a></li>
+      <li><a href="Signup.html">Sign up</a></li>
+      <li><a href="admin.html">Admin</a></li>
+    </ul>
+</div>
+
+<div>
+    <ul class="NavigationBar">
+        <li ><a href=Home.php> Home </a></li>
+        <li ><a href=cart.php> Cart </a></li>
+        <li ><a href=orderNow.php> Order Now </a></li>
+        <li ><a href=Track_order.html> Track the Order </a></li>
+        <li ><a href=contacts.html> Contacts Us </a></li>
+        <li ><a href=Rating.html> Rate Us </a></li>
+        <li ><a href=Aboutus.html> About Us </a></li>   
+    </ul>    
+</div>
+
+  <form action="Signup.php" method="post">
+    <div class="form">
+      <label for="FirstName">First Name:</label><br><br>
+      <input type="text" name="FirstName" class="input" required><br><br>
+
+      <label for="LastName">Last Name:</label><br><br>
+      <input type="text" name="LastName" class="input" required><br><br>
+
+      <label for="customerID">Customer ID:</label><br><br>
+      <input type="text" name="customerID" id="customerID" class="input" placeholder="Username" required><br>
+      <span id="customerIDMessage"></span><br><br>
+
+      <label for="Address">Address:</label><br><br>
+      <input type="text" name="Address" class="input" required><br><br>
+
+      <label for="MobileNumber">Mobile Number:</label><br><br>
+      <input type="number" name="MobileNumber" class="input" required><br><br>
+
+      <label for="Password">Password:</label><br><br>
+      <input type="text" name="Password" class="input" required><br><br>
+
+      <label for="Gender">Gender:</label>
+      <input type="radio" name="Gender" value="Male" required> Male
+      <input type="radio" name="Gender" value="Female" required> Female<br><br>
+
+      <label for="agree"></label>
+      <input type="checkbox" name="agree[]" value="agree" required> Agree to Terms and Conditions<br><br>
+      <input type="submit" value="Submit" class="input"><br>
+    </div>
+  </form>
+
+  <br><br>
+  <footer>
+    <p>&copy; 2023 Online Shopping, Sri Lanka</p>
+  </footer>
+</body>
+</html>
