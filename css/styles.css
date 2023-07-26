@@ -1,0 +1,264 @@
+body {
+  background-color: rgb(255, 255, 255);
+  padding: 15px;
+}
+
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff;
+  padding: 0;
+  color: #f2f2f2;
+}
+
+
+.logocontainer {
+  display: flex;
+  align-items: center;
+}
+
+.logoimg {
+  width: 60px;
+  height: 60px;
+  margin-right: 0;
+}
+
+.logocontainer h2 {
+  margin: 0;
+  font-size: 30px;
+}
+
+.login {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.login li {
+  margin-left: 10px;
+}
+
+.login a {
+  color: #f50707;
+  text-decoration: none;
+}
+
+footer {
+  text-align: center;
+  color: aliceblue;
+  font-size: 15px;
+  font-family: 'Times New Roman', Times, serif;
+  padding: 0;
+  background-color: #f50707;
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+  left: 0;
+}
+
+.logoimg {
+  width: 60px;
+  height: 60px;
+  top: 15px;
+  padding-left: 20px;
+}
+
+h2 {
+  padding-left: 50px;
+  color: rgb(249, 42, 5);
+  top: 10px;
+}
+
+.form {
+  font-size: large;
+  align-items: center;
+  padding-left: 500px;
+  padding-top: 10px;
+}
+
+.contactsus {
+  color: chocolate;
+  font-size: medium;
+  padding-left: 600px;
+  padding-top: 100px;
+  font-size: larger;
+}
+
+input[type="submit"] {
+  background-color: #ffffff;
+  color: #f81212;
+  padding: 3px 8px;
+  border-color: #f81111;
+}
+
+.NavigationBar {
+  overflow: hidden;
+  background-color: #ef5656;
+  list-style-type: none;
+}
+
+.NavigationBar a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 13px 35px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.NavigationBar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.NavigationBar a.active {
+  background-color: #807d7b;
+  color: white;
+}
+
+
+li {
+  display: inline;
+}
+
+.login {
+  overflow: hidden;
+  list-style-type: none;
+  text-align: right;
+}
+
+.login a {
+  float: right;
+  color: #f50707;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.login a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.login a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.offer{
+  text-decoration: line-through;
+  font-size: larger;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.price{
+  font-size: larger;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+
+.offerlink{
+  text-decoration: none;
+  color: rgb(1, 1, 1);
+}
+
+.product_block_text{
+  color: #d66a16;
+  font-size: larger;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  padding-left: 520px;
+}
+
+
+.aboutus{
+  padding-left: 300px;
+  padding-right: 300px;
+  color: #000000;
+  font-size: larger;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-style:inherit;
+}
+
+
+.selection {
+  width: 350px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  font-size: x-large;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  list-style-type: none;
+  overflow: hidden;
+  position: relative;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  background-color: #f94449;
+  border-radius: 50px;
+  transition: transform 0.3s;
+  transform-origin: center center;
+}
+
+.selection:hover {
+  transform: scale(1.1); /* Adjust the scaling factor as needed */
+}
+
+.middle {
+  padding-left: 500px;
+}
+
+input[type="checkbox"] {
+  transform: scale(1.5);
+  font-size: large;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+input[type="submit"] {
+  width: 150px;
+  height: 40px;
+  font-size: large;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.input {
+  width: 200;
+  height: 30px;
+  font-size: large;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+inputsearch[type="submit"] {
+  width: 80px;
+  height: 25px;
+  font-size: large;
+  padding-left: 10px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  border-radius: 10px;
+  background-color: #807d7b;
+}
+
+.inputsearch {
+  width: 100;
+  height: 30px;
+  margin-right: 10px;
+  font-size: large;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  border-radius: 10px;
+}
+
+
+ /* CSS style to display the search input and button in the same line */
+.forminline {
+  display: flex;
+  align-items: center;
+}
+
+
+
+

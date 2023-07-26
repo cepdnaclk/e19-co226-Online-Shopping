@@ -1,0 +1,29 @@
+
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+
+.loginbtn {
+    display: block;
+    margin: 0 auto;
+    font-size: large;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    border-color: rgb(237, 31, 31);
+    background-color: rgb(251, 251, 251);
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  .loginbtn:hover {
+    transform: scale(1.03);
+  }
+  

@@ -1,0 +1,27 @@
+.select {
+    width: 200px; 
+    height: 25px;
+    font-size: large;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+
+  .input {
+    width: 200px; 
+    height: 25px; 
+    font-size: large;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+
+
+  input[type="checkbox"] {
+      transform: scale(1.5);
+      font-size: large;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+
+  input[type="submit"] {
+      width: 150px; 
+      height: 40px; 
+      font-size: large;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+  }
