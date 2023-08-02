@@ -1,0 +1,9 @@
+CREATE TABLE `supply` (
+  `SupplierID` int(11) NOT NULL,
+  `ProductID` int(11) NOT NULL,
+  `Date` date DEFAULT NULL,
+  `Total` int(11) NOT NULL,
+  PRIMARY KEY (`SupplierID`, `ProductID`),
+  FOREIGN KEY (`SupplierID`) REFERENCES `supplier` (`SupplierID`),
+  FOREIGN KEY (`ProductID`) REFERENCES `product` (`ProductID`)
+);

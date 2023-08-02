@@ -1,0 +1,7 @@
+CREATE TABLE `cart` (
+  `ProductID` int(11) NOT NULL,
+  `ProductName` varchar(100) NOT NULL,
+  `SellingPrice` int(11) NOT NULL,
+  `Quantity` int(11) NOT NULL,
+  PRIMARY KEY (`ProductID`)
+);

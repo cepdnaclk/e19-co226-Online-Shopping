@@ -1,0 +1,12 @@
+CREATE TABLE `product` (
+  `ProductID` int(100) NOT NULL AUTO_INCREMENT,
+  `ProductName` varchar(100) NOT NULL,
+  `Price` int(100) NOT NULL,
+  `image` blob DEFAULT NULL,
+  `TagPrice_percentage` int(11) NOT NULL,
+  `SellingPrice_percentage` int(11) NOT NULL,
+  `Tag_Price` int(11) DEFAULT NULL,
+  `Selling_Price` int(11) DEFAULT NULL,
+  `Description` text DEFAULT NULL,
+  PRIMARY KEY (`ProductID`)
+);

@@ -1,0 +1,6 @@
+CREATE TABLE `rating` (
+  `Customer_ID` varchar(100) DEFAULT NULL,
+  `Comment` text NOT NULL,
+  `Rating` int(100) NOT NULL,
+  FOREIGN KEY (`Customer_ID`) REFERENCES `customer` (`Customer_ID`)
+);

@@ -1,0 +1,11 @@
+CREATE TABLE `order` (
+  `OrderNo` varchar(100) NOT NULL,
+  `Total_Amount` int(11) NOT NULL,
+  `Payment_Method` varchar(100) DEFAULT NULL,
+  `Order_Date` date DEFAULT NULL,
+  `Expected_Delivery_Date` date DEFAULT NULL,
+  `Customer_ID` varchar(100) NOT NULL,
+  `Status` varchar(100) DEFAULT 'Order processing',
+  PRIMARY KEY (`OrderNo`),
+  FOREIGN KEY (`Customer_ID`) REFERENCES `customer` (`Customer_ID`)
+);

@@ -1,0 +1,7 @@
+CREATE TABLE `supplier` (
+  `SupplierID` int(100) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(100) NOT NULL,
+  `Contact_No` int(100) NOT NULL,
+  `Address` varchar(100) NOT NULL,
+  PRIMARY KEY (`SupplierID`)
+);
