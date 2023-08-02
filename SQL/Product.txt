@@ -10,3 +10,28 @@ CREATE TABLE `product` (
   `Description` text DEFAULT NULL,
   PRIMARY KEY (`ProductID`)
 );
+
+DELIMITER $$
+CREATE TRIGGER `UpdateSellingPriceInsert` BEFORE INSERT ON `product` FOR EACH ROW BEGIN
+    SET NEW.Selling_price = NEW.Price + NEW.Price * NEW.SellingPrice_percentage * 0.01;
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `UpdateSellingPriceUpdate` BEFORE UPDATE ON `product` FOR EACH ROW BEGIN
+    SET NEW.Selling_price = NEW.Price + NEW.Price * NEW.SellingPrice_percentage * 0.01;
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `UpdateTagPriceInsert` BEFORE INSERT ON `product` FOR EACH ROW BEGIN
+    SET NEW.Tag_Price = NEW.Price + NEW.Price * NEW.TagPrice_percentage * 0.01;
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `UpdateTagPriceUpdate` BEFORE UPDATE ON `product` FOR EACH ROW BEGIN
+    SET NEW.Tag_Price = NEW.Price + NEW.Price * NEW.TagPrice_percentage * 0.01;
+END
+$$
+DELIMITER ;
