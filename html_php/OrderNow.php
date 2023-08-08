@@ -1,23 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>
-            Online Shopping
-        </title>
-        <link rel = "icon" href = Logo.jpg type = "image/x-icon">
-        <link rel="stylesheet" type="text/css" href="../css/test.css" />
-        <link rel="stylesheet" type="text/css" href="../css/styles.css" />
-    </head>
+    <title>Online Shopping</title>
+    <link rel="icon" href="Logo.jpg" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="../css/test.css" />
+    <link rel="stylesheet" type="text/css" href="../css/styles.css" />
+</head>
 
-    <body>
-
-        <div class="header">
-            <div class="logocontainer">
+<body>
+    <div class="header">
+        <div class="logocontainer">
             <a href="Home.php">
-              <img class="logoimg" src="../images/LogoFinal.jpg" alt="Logo">
+                <img class="logoimg" src="../images/LogoFinal.jpg" alt="Logo">
             </a>
-              <h2>The largest online shopping platform in Sri Lanka.</h2>
-            </div>
+            <h2>The largest online shopping platform in Sri Lanka.</h2>
+        </div>
 
         <ul class="login">
             <li><a href="Login.html">Log in</a></li>
@@ -61,13 +58,23 @@
         // Generate the order number (you can use any logic to generate a unique order number)
         $orderNumber = generateOrderNumber();
 
-        // Calculate the total amount
-        $totalAmount = calculateTotalAmount($cartItems);
+        // Calculate the updated total amount and update the quantities in the cart
+        $totalAmount = 0;
+        foreach ($_POST['quantity'] as $index => $newQuantity) {
+            $_SESSION['cart'][$index]['quantity'] = $newQuantity;
+            $productID = $cartItems[$index]['productID'];
+            $sellingPrice = $cartItems[$index]['sellingPrice'];
+            $totalAmount += $sellingPrice * $newQuantity;
+
+            // Update the product quantity in the database
+            $stmt = $conn->prepare("UPDATE contain SET No_of_Product = ? WHERE ProductID = ? AND OrderNo = ?");
+            $stmt->bind_param("iis", $newQuantity, $productID, $orderNumber);
+            $stmt->execute();
+        }
 
         // Get the customer ID from your authentication system or form input
         if (isset($_SESSION['CustomerID'])) {
             $customerID = $_SESSION['CustomerID'];
-            // ... Use the $userid for your logic on this page
         } else {
             // User is not logged in, handle accordingly (e.g., redirect to login page)
             header("Location: Login.html");
@@ -76,20 +83,24 @@
 
         // Get the payment method and expected delivery date from the form
         $paymentMethod = $_POST['Payment_Method'];
-        $expectedDeliveryDate = date('Y-m-d', strtotime('+2 days'));
+        $expectedDeliveryDate = date('Y-m-d', strtotime('+2 days', strtotime(date('Y-m-d'))));
+        $Delivery_Address1 = $_POST['DeliveryAddress1'];
+        $Delivery_Address2 = $_POST['DeliveryAddress2'];
+        $Delivery_Address3 = $_POST['DeliveryAddress3'];
 
         // Insert the order details into the database using prepared statements
-        $stmt = $conn->prepare("INSERT INTO `order` (OrderNo, Total_Amount, Payment_Method, Order_Date, Expected_Delivery_Date, Customer_ID) 
-                                VALUES (?, ?, ?, CURDATE(), ?, ?)");
-        $stmt->bind_param("sdsds", $orderNumber, $totalAmount, $paymentMethod, $expectedDeliveryDate, $customerID);
+        $stmt = $conn->prepare("INSERT INTO `order` (OrderNo, Total_Amount, Payment_Method, Order_Date, Expected_Delivery_Date, Customer_ID, Delivery_Address_No, Delivery_Address, Delivery_Address_city) 
+                                VALUES (?, ?, ?, CURDATE(), ?, ?, ?, ? , ?)");
+        $stmt->bind_param("sdsdssss", $orderNumber, $totalAmount, $paymentMethod, $expectedDeliveryDate, $customerID, $Delivery_Address1, $Delivery_Address2, $Delivery_Address3);
         $stmt->execute();
 
         // Insert the order items into the database using prepared statements
         $stmt = $conn->prepare("INSERT INTO contain (OrderNo, ProductID, No_of_Product) 
                                 VALUES (?, ?, ?)");
-        $stmt->bind_param("sii", $orderNumber, $productID, $quantity);
+        $stmt->bind_param("sii", $orderNumber, $productID, $newQuantity);
 
-        foreach ($cartItems as $cartItem) {
+        // Loop through the updated cart items and insert them into the database
+        foreach ($_SESSION['cart'] as $cartItem) {
             $productID = $cartItem['productID'];
             $quantity = $cartItem['quantity'];
 
@@ -103,6 +114,7 @@
         echo "Payment Method         : " . $paymentMethod . "<br><br>";
         echo "Order Date             : " . date('Y-m-d') . "<br><br>";
         echo "Expected Delivery Date : " . $expectedDeliveryDate . "<br><br>";
+        echo "Delivery Address       : " . $Delivery_Address1 . ", " . $Delivery_Address2 . ", " . $Delivery_Address3 . "<br><br>";
         echo "Customer ID            : " . $customerID . "<br><br>";
 
         // Clear the cart
@@ -124,21 +136,6 @@
 
         return $orderNumber;
     }
-
-    // Function to calculate the total amount of the order
-    function calculateTotalAmount($cartItems)
-    {
-        $total = 0;
-
-        foreach ($cartItems as $cartItem) {
-            $sellingPrice = $cartItem['sellingPrice'];
-            $quantity = $cartItem['quantity'];
-
-            $total += $sellingPrice * $quantity;
-        }
-
-        return $total;
-    }
     ?>
 
     <br><br>
@@ -146,6 +143,5 @@
     <footer>
         <p>&copy; 2023 Online Shopping, Sri Lanka, All rights reserved.</p>
     </footer>
-
 </body>
 </html>
