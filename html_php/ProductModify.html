@@ -1,93 +1,86 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>
-            Online Shopping
-        </title>
-        <link rel = "icon" href = Logo.jpg type = "image/x-icon">
-        <link rel="stylesheet" type="text/css" href="test.css" />
-        <link rel="stylesheet" type="text/css" href="styles.css" />
-        <link rel="stylesheet" type="text/css" href="select_style.css" />
+  <head>
+    <title>Online Shopping</title>
+    <link rel="icon" href="Logo.jpg" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="../css/test.css" />
+    <link rel="stylesheet" type="text/css" href="../css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="../css/select_style.css" />
+  </head>
 
+  <body>
+    <div class="header">
+      <div class="logocontainer">
+        <a href="Home.php">
+          <img class="logoimg" src="../images/LogoFinal.jpg" alt="Logo" />
+        </a>
+        <h2>The largest online shopping platform in Sri Lanka.</h2>
+      </div>
 
-    </head>
+      <ul class="login">
+        <li><a href="Login.html">Log in</a></li>
+        <li><a href="Signup.html">Sign up</a></li>
+        <li><a href="admin.html">Admin</a></li>
+      </ul>
+    </div>
 
-    <body>
-        <div class="header">
-            <div class="logocontainer">
-            <a href="Home.php">
-              <img class="logoimg" src="LogoFinal.jpg" alt="Logo">
-            </a>
-              <h2>The largest online shopping platform in Sri Lanka.</h2>
-            </div>
-        
-            <ul class="login">
-              <li><a href="Login.html">Log in</a></li>
-              <li><a href="Signup.html">Sign up</a></li>
-              <li><a href="admin.html">Admin</a></li>
-            </ul>
-        </div>
+    <div>
+      <ul class="NavigationBar">
+        <li><a href="Home.php"> Home </a></li>
+        <li><a href="cart.php"> Cart </a></li>
+        <li><a href="orderNow.php"> Order Now </a></li>
+        <li><a href="Track_order.html"> Track the Order </a></li>
+        <li><a href="contacts.html"> Contacts Us </a></li>
+        <li><a href="Rating.html"> Rate Us </a></li>
+        <li><a href="Aboutus.html"> About Us </a></li>
+      </ul>
+    </div>
 
-        <div>
-            <ul class="NavigationBar">
-                <li ><a href=Home.php> Home </a></li>
-                <li ><a href=cart.php> Cart </a></li>
-                <li ><a href=orderNow.php> Order Now </a></li>
-                <li ><a href=Track_order.html> Track the Order </a></li>
-                <li ><a href=contacts.html> Contacts Us </a></li>
-                <li ><a href=Rating.html> Rate Us </a></li>
-                <li ><a href=Aboutus.html> About Us </a></li>   
-            </ul>    
-        </div>
+    <form action="ProductModify.php" method="post">
+      <div class="form">
+        <label for="ProductID">Product ID : </label> <br /><br />
+        <input
+          type="text"
+          name="ProductID"
+          class="input"
+          required
+        /><br /><br />
 
-        <form action = "ProductModify.php" method = "post">
+        <label for="Name">Name of Product : </label> <br /><br />
+        <input type="text" name="ProductName" class="input" required />
+        <br /><br />
 
-            <div class="form">
+        <label for="Price">Price : </label> <br /><br />
+        <input type="text" name="Price" class="input" required /> <br /><br />
 
-                <label for="ProductID">Product ID : </label>     <br><br>
-                <input type="text" name="ProductID" class="input" required><br><br>
-                
+        <label for="tagPrice">Tag Price percentage: </label> <br /><br />
+        <input type="number" name="tagPrice" class="input" required />
+        <br /><br />
 
-                <label for="Name">Name of Product : </label>     <br><br>
-                <input type="text" name="ProductName" class="input" required> <br><br>  
-                
-                <label for="Price">Price : </label>     <br><br>
-                <input type="text" name="Price" class="input" required> <br><br>
+        <label for="SellingPrice">Selling Price percentage : </label>
+        <br /><br />
+        <input type="number" name="SellingPrice" class="input" required />
+        <br /><br />
 
-                <label for="tagPrice">Tag Price percentage: </label>     <br><br>
-                <input type="number" name="tagPrice" class="input" required> <br><br>
+        <label for="image">Image : </label> <br /><br />
+        <input type="file" name="image" accept="image/*" required />
+        <br /><br />
 
-                <label for="SellingPrice">Selling Price percentage : </label>     <br><br>
-                <input type="number" name="SellingPrice" class="input" required> <br><br>
-                
-                <label for="image">Image : </label>     <br><br>
-                <input type="file" name="image" accept="image/*" required> <br><br>
+        <label for="description">Description : </label> <br /><br />
+        <textarea name="description" rows="12" cols="50"></textarea>
 
-                <label for="description">Description : </label>     <br><br>
-                <textarea name="description" rows="12" cols="50"></textarea>
-                
+        <br /><br /><br />
+        <input type="checkbox" name="agree[]" value="agree" required /> Agree to
+        save changes <br /><br /><br />
+        <input type="submit" value=" Submit " class="input" /> <br />
+      </div>
+    </form>
 
-                <br><br><br>
-                <input type="checkbox" name="agree[]" value="agree" required > Agree to save changes <br><br><br>
-                <input type="submit" value=" Submit " class="input"> <br>
-            
-            </div>
+    <br />
+    <br />
+  </body>
 
-            </form>
-
-
-
-
-    <br>
-    <br>
-    </body>
-
-
-    <footer>
-        <p>&copy; 2023 Online Shopping, Sri Lanka </p>
-    </footer>
-
+  <footer>
+    <p>&copy; 2023 Online Shopping, Sri Lanka</p>
+  </footer>
 </html>
-
-
-

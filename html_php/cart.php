@@ -94,8 +94,8 @@ if (isset($_POST['add_to_cart'])) {
         echo '<br><br>';
         echo '<label> Delivey Address : </label>';
         echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
-        echo '<input name="DeliveryAddress1" type="text" placeholder="Number" style="width: 80px;" required></input>&nbsp;';
-        echo '<input name="DeliveryAddress2" type="text" placeholder="Road name" style="width: 200px;" required></input>&nbsp;';
+        echo '<input name="DeliveryAddress1" type="text" placeholder="No." style="width: 80px;" required></input>&nbsp;';
+        echo '<input name="DeliveryAddress2" type="text" placeholder="Road/Street" style="width: 200px;" required></input>&nbsp;';
         echo '<input name="DeliveryAddress3" type="text" placeholder="City" style="width: 170px;" required></input>';
         
         echo '<br><br>';

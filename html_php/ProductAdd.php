@@ -51,7 +51,25 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data
 $ProductName = $_POST["ProductName"];
-$image = $_POST["image"];
+
+
+$img_name = $_FILES['image']['name'];
+$tmp_name = $_FILES['image']['tmp_name'];
+$img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
+$img_ex_lc = strtolower($img_ex);
+$allowed_ex = array("jpg", "jpeg", "png");
+
+if (in_array($img_ex_lc, $allowed_ex)){
+    $new_img_name = uniqid("IMG-",true).'.'.$img_ex_lc;
+    $img_upload_path = '../uploads/'.$new_img_name;
+    move_uploaded_file($tmp_name, $img_upload_path);
+}
+else{
+    echo 'File is not image file...';
+}
+
+
+
 $Price = $_POST["Price"];
 $tagPrice = $_POST["tagPrice"];
 $SellingPrice = $_POST["SellingPrice"];
@@ -66,8 +84,8 @@ $description = mysqli_real_escape_string($conn, $_POST["description"]);
     }
 
     // Prepare and execute the SQL query to insert the Product details
-    $sql = "INSERT INTO Product (ProductName, Price, image, tagPrice_percentage, SellingPrice_percentage,Description)
-            VALUES ('$ProductName', '$Price', '$image', $tagPrice, $SellingPrice, '$description')";
+    $sql = "INSERT INTO Product (ProductName, Price, image_url, tagPrice_percentage, SellingPrice_percentage,Description)
+            VALUES ('$ProductName', '$Price', '$new_img_name', $tagPrice, $SellingPrice, '$description')";
 
     if ($conn->query($sql) === TRUE) {
         echo "Product added successfully";
@@ -87,6 +105,3 @@ $description = mysqli_real_escape_string($conn, $_POST["description"]);
     </footer>
 
 </html>
-
-
-

@@ -87,9 +87,10 @@
         while ($row = mysqli_fetch_assoc($result)) {
             echo '<div class="product-block">';
             echo '<a href="ProductDetails.php?id='. $row['ProductID'] . '" class="offerlink">';
-            echo '<img src="data:image/jpg;base64,' . base64_encode($row['image']) . '" alt="Product Image">';
+            echo '<img src="../uploads/' . $row['image_url'] . '" alt="Product Image">';
             echo '<h3>' . $row['ProductName'] . '</h3>';
-            echo '<p><p class="offer">' ."LKR ". number_format($row['Tag_Price'], 2) . '</p class="price">' ."LKR ". number_format($row['Selling_Price'], 2) . '</p></a>';
+            echo '<p class="offer">' ."LKR ". number_format($row['Tag_Price'], 2) . '</p>';
+            echo '<p class="price">' ."LKR ". number_format($row['Selling_Price'], 2) . '</p></a>';
 
             echo '<form action="cart.php" method="POST">';
             echo '<input type="hidden" name="productID" value="' . $row['ProductID'] . '">';
