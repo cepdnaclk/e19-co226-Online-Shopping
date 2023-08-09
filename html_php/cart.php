@@ -34,55 +34,59 @@
     </div>
 
     <div class="container pt-2">
-        <?php
-        session_start();
+    <?php
+session_start();
 
-        if (!isset($_SESSION['cart'])) {
-            $_SESSION['cart'] = array(); // Initialize the cart array if it doesn't exist
+if (isset($_GET["del"])) {
+    foreach ($_SESSION['cart'] as $key => $value) {
+        if ($value['productID'] == $_GET['del']) {
+            unset($_SESSION["cart"][$key]);
         }
+    }
+}
 
-        if (isset($_POST['add_to_cart'])) {
-            // Retrieve the product details from the form
-            $productID = $_POST['productID'];
-            $productName = $_POST['productName'];
-            $sellingPrice = $_POST['sellingPrice'];
-            $quantity = $_POST['quantity'];
+if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = array(); // Initialize the cart array if it doesn't exist
+}
 
-            // Create an associative array for the cart item
-            $cartItem = array(
-                'productID' => $productID,
-                'productName' => $productName,
-                'sellingPrice' => $sellingPrice,
-                'quantity' => $quantity
-            );
+if (isset($_POST['add_to_cart'])) {
+    // Retrieve the product details from the form
+    $productID = $_POST['productID'];
+    $productName = $_POST['productName'];
+    $sellingPrice = $_POST['sellingPrice'];
+    $quantity = $_POST['quantity'];
 
-            // Add the cart item to the cart array in the session
-            $_SESSION['cart'][] = $cartItem;
-        }
+    $productID_array = array_column($_SESSION["cart"], "productID");
+    if (!in_array($productID, $productID_array)) {
+        // Create an associative array for the cart item
+        $cartItem = array(
+            'productID' => $productID,
+            'productName' => $productName,
+            'sellingPrice' => $sellingPrice,
+            'quantity' => $quantity
+        );
+
+        // Add the cart item to the cart array in the session
+        $_SESSION['cart'][] = $cartItem;
+    } else {
+        echo "<script>alert ('Already Added..') </script>";
+    }
+}
 
         echo '<form action="ordernow.php" method="post">';
         echo '<table class="table table-striped">';
         echo '<tr><th>Product ID</th><th>Product Name</th><th>Selling Price</th><th>Quantity</th><th>Action</th></tr>';
 
+        $totalAmount = 0;
         foreach ($_SESSION['cart'] as $index => $cartItem) {
             echo '    <tr>';
             echo '        <td>' . $cartItem['productID'] . '</td>';
             echo '        <td>' . $cartItem['productName'] . '</td>';
             echo '        <td>' . $cartItem['sellingPrice'] . '</td>';
             echo '        <td><input type="number" name="quantity[' . $index . ']" value="' . $cartItem['quantity'] . '" min="1" style="width: 60px;"required></td>';
-            echo '        <td><button type="submit" name="remove_item" value="' . $index . '" class="btn btn-danger btn-sm">Remove</button></td>';
+            echo '        <td><a href="cart.php?del=' . $cartItem['productID'] . '">Remove</a></td>';
             echo '        <input type="hidden" name="productID[' . $index . ']" value="' . $cartItem['productID'] . '">';
             echo '    </tr>';
-
-            if (isset($_POST['remove_item'])) {
-                $indexToRemove = $_POST['remove_item'];
-            
-                // Remove the item from the cart array
-                if (isset($_SESSION['cart'][$indexToRemove])) {
-                    unset($_SESSION['cart'][$indexToRemove]);
-                    $_SESSION['cart'] = array_values($_SESSION['cart']); // Re-index the array
-                }
-            }
         }
         echo '</table>';
 
