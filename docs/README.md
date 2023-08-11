@@ -1,3 +1,17 @@
+---
+layout: home
+permalink: index.html
+
+# Please update this with your repository name and title
+repository-name: e19-co226-Online-Shopping
+title: Online Shopping
+---
+
+[comment]: # "This is the standard layout for the project, but you can clean this and use your own template"
+
+# CricLive - Database for Cricket Statistics
+---
+
 # Online Shopping Website
 
 This repository contains the code and files for an online shopping website. The website provides a platform for users to browse and purchase various products conveniently from the comfort of their own homes.
@@ -65,3 +79,6 @@ Follow these steps to explore the Online Shopping Website's capabilities and mak
 For any inquiries, reach out to [e19105@eng.pdn.ac.lk].
 
 This README was last updated on [08/10/2023].
+
+
+
