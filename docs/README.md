@@ -9,11 +9,8 @@ title: Online Shopping
 
 [comment]: # "This is the standard layout for the project, but you can clean this and use your own template"
 
-# CricLive - Database for Cricket Statistics
----
-
 # Online Shopping Website
-
+---
 This repository contains the code and files for an online shopping website. The website provides a platform for users to browse and purchase various products conveniently from the comfort of their own homes.
 
 ## Table of Contents
