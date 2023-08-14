@@ -1,8 +1,6 @@
 CREATE TABLE `stock` (
-  `BranchID` int(100) NOT NULL,
   `ProductID` int(100) NOT NULL,
   `Quantity` int(100) DEFAULT NULL,
-  PRIMARY KEY (`BranchID`, `ProductID`),
-  FOREIGN KEY (`BranchID`) REFERENCES `branches` (`BranchID`),
+  PRIMARY KEY (`ProductID`),
   FOREIGN KEY (`ProductID`) REFERENCES `product` (`ProductID`)
 );
