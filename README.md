@@ -62,6 +62,6 @@ The Online Shopping Website is built using the following technologies:
 
 Follow these steps to explore the Online Shopping Website's capabilities and make shopping a breeze from the comfort of your home.
 
-For any inquiries, reach out to [e19105@eng.pdn.ac.lk].
+For any inquiries, reach out to [e19105@eng.pdn.ac.lk], [e19106@eng.pdn.ac.lk], [e19111@eng.pdn.ac.lk].
 
 This README was last updated on [08/10/2023].
