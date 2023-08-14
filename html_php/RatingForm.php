@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <title>
+        <title>
             Online Shopping
         </title>
         <link rel = "icon" href = Logo.jpg type = "image/x-icon">
@@ -18,6 +18,7 @@
             </a>
               <h2>The largest online shopping platform in Sri Lanka.</h2>
             </div>
+        
             <ul class="login">
               <li><a href="Login.html">Log in</a></li>
               <li><a href="Signup.html">Sign up</a></li>
@@ -37,71 +38,71 @@
     </ul>
 </div>
 
+
+        
 <?php
 
-    // Establish a connection to the database
+session_start();
+
+    // Connect to your MySQL database
     $host = "localhost";
     $dbname = "project_database";
     $username = "root";
     $password = "";
-    
-    $conn = mysqli_connect($host, $username, $password, $dbname);
-
-// Check if the form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve form data
-$ProductName = $_POST["ProductName"];
-
-
-$img_name = $_FILES['image']['name'];
-$tmp_name = $_FILES['image']['tmp_name'];
-$img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
-$img_ex_lc = strtolower($img_ex);
-$allowed_ex = array("jpg", "jpeg", "png");
-
-if (in_array($img_ex_lc, $allowed_ex)){
-    $new_img_name = uniqid("IMG-",true).'.'.$img_ex_lc;
-    $img_upload_path = '../uploads/'.$new_img_name;
-    move_uploaded_file($tmp_name, $img_upload_path);
-}
-else{
-    echo 'File is not image file...';
-}
 
 
 
-$Price = $_POST["Price"];
-$tagPrice = $_POST["tagPrice"];
-$SellingPrice = $_POST["SellingPrice"];
-$description = mysqli_real_escape_string($conn, $_POST["description"]);
-
-
-
-
-    // Check connection
+// Check if the user is logged in (has a `CustomerID` in the session)
+if (isset($_SESSION['CustomerID'])) {
+    // Establish a database connection (replace with your database configuration)
+    $conn = new mysqli($host, $username, $password, $dbname);
+    // Check the connection
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // Prepare and execute the SQL query to insert the Product details
-    $sql = "INSERT INTO Product (ProductName, Price, image_url, tagPrice_percentage, SellingPrice_percentage,Description)
-            VALUES ('$ProductName', '$Price', '$new_img_name', $tagPrice, $SellingPrice, '$description')";
+echo '<form action="rating.php" method=post>
 
-    if ($conn->query($sql) === TRUE) {
-        echo "Product added successfully";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
+<div class="form" >    
+    <label for="Comments" >Share Your Feedback : </label>     <br><br>
+    <textarea name="Comments" rows="12" cols="50"></textarea><br>           
+    <br><br><br>
 
-    // Close the database connection
+    <label for="Rating" >Rate us : </label>
+    <input type="radio" name="Rating" value="1"> 1 &nbsp;
+    <input type="radio" name="Rating" value="2"> 2 &nbsp;
+    <input type="radio" name="Rating" value="1"> 3 &nbsp;
+    <input type="radio" name="Rating" value="2"> 4 &nbsp;
+    <input type="radio" name="Rating" value="1"> 5 &nbsp;
+    <br><br><br>
+
+    <input type="submit" value=" Submit " > <br>
+</div>
+
+</form>';
+
     $conn->close();
+} else {
+    // User is not logged in, redirect to login page
+    header("Location: login.html");
+    exit; // Always exit after a header redirect
 }
 ?>
 
+    <br><br>
     </body>
 
-    <footer>
-        <p>&copy; 2023 Online Shopping, Sri Lanka </p>
+    <footer>  
+    <p>&copy; 2023 Online Shopping, Sri Lanka, All rights reserved.</p>
     </footer>
 
 </html>
+
+
+
+
+
+
+
+
+

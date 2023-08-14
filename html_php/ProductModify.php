@@ -24,18 +24,17 @@
               <li><a href="admin.html">Admin</a></li>
             </ul>
         </div>
-
         <div>
-            <ul class="NavigationBar">
-                <li ><a href=Home.php> Home </a></li>
-                <li ><a href=cart.php> Cart </a></li>
-                <li ><a href=orderNow.php> Order Now </a></li>
-                <li ><a href=Track_order.html> Track the Order </a></li>
-                <li ><a href=contacts.html> Contacts Us </a></li>
-                <li ><a href=Rating.html> Rate Us </a></li>
-                <li ><a href=Aboutus.html> About Us </a></li>   
-            </ul>    
-        </div>
+    <ul class="NavigationBar">
+        <li><a href="Home.php">Home</a></li>
+        <li><a href="cart.php">Cart</a></li>
+        <li><a href="orderHistory.php">Order History</a></li>
+        <li><a href="Track_order.html">Track the Order</a></li>
+        <li><a href="contacts.html">Contacts Us</a></li>
+        <li><a href="RatingForm.php">Rate Us</a></li>
+        <li><a href="Aboutus.html">About Us</a></li>
+    </ul>
+</div>
 
             <?php
 $host = "localhost";

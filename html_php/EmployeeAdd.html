@@ -1,100 +1,98 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>
-            Online Shopping
-        </title>
-        <link rel = "icon" href = Logo.jpg type = "image/x-icon">
-        <link rel="stylesheet" type="text/css" href="../css/test.css" />
-        <link rel="stylesheet" type="text/css" href="../css/styles.css" />
-    </head>
+  <head>
+    <title>Online Shopping</title>
+    <link rel="icon" href="Logo.jpg" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="../css/test.css" />
+    <link rel="stylesheet" type="text/css" href="../css/styles.css" />
+  </head>
 
-    <body>
+  <body>
+    <div class="header">
+      <div class="logocontainer">
+        <a href="Home.php">
+          <img class="logoimg" src="../images/LogoFinal.jpg" alt="Logo" />
+        </a>
+        <h2>The largest online shopping platform in Sri Lanka.</h2>
+      </div>
 
-        <div class="header">
-            <div class="logocontainer">
-            <a href="Home.php">
-              <img class="logoimg" src="../images/LogoFinal.jpg" alt="Logo">
-            </a>
-              <h2>The largest online shopping platform in Sri Lanka.</h2>
-            </div>
-        
-            <ul class="login">
-              <li><a href="Login.html">Log in</a></li>
-              <li><a href="Signup.html">Sign up</a></li>
-              <li><a href="admin.html">Admin</a></li>
-            </ul>
-        </div>
+      <ul class="login">
+        <li><a href="Login.html">Log in</a></li>
+        <li><a href="Signup.html">Sign up</a></li>
+        <li><a href="admin.html">Admin</a></li>
+      </ul>
+    </div>
 
-        <div>
-            <ul class="NavigationBar">
-                <li ><a href=Home.php> Home </a></li>
-                <li ><a href=cart.php> Cart </a></li>
-                <li ><a href=orderNow.php> Order Now </a></li>
-                <li ><a href=Track_order.html> Track the Order </a></li>
-                <li ><a href=contacts.html> Contacts Us </a></li>
-                <li ><a href=Rating.html> Rate Us </a></li>
-                <li ><a href=Aboutus.html> About Us </a></li>   
-            </ul>    
-        </div>
+    <div>
+      <ul class="NavigationBar">
+        <li><a href="Home.php">Home</a></li>
+        <li><a href="cart.php">Cart</a></li>
+        <li><a href="orderHistory.php">Order History</a></li>
+        <li><a href="Track_order.html">Track the Order</a></li>
+        <li><a href="contacts.html">Contacts Us</a></li>
+        <li><a href="RatingForm.php">Rate Us</a></li>
+        <li><a href="Aboutus.html">About Us</a></li>
+      </ul>
+    </div>
 
-        <form action = "EmployeeAdd.php" method = "post">
+    <form action="EmployeeAdd.php" method="post">
+      <div class="form">
+        <label for="FirstName">First Name : </label> <br /><br />
+        <input type="text" name="FirstName" class="input" required />
+        <br /><br />
 
-            <div class="form">
-                
-                
-                <label for="FirstName">First Name : </label>   <br><br>
-                <input type="text" name="FirstName" class="input" required>        
-                <br><br>
+        <label for="LastName">Last Name : </label> <br /><br />
+        <input type="text" name="LastName" class="input" required />
+        <br /><br />
 
-                <label for="LastName">Last Name : </label>     <br><br>
-                <input type="text" name="LastName" class="input" required>            
-                <br><br>
+        <label for="Address">Address : </label> <br /><br />
+        <input type="text" name="Address" class="input" required />
+        <br /><br />
 
-                <label for="Address">Address : </label>     <br><br>
-                <input type="text" name="Address" class="input" required>            
-                <br><br>
+        <label for="MobileNumber">Mobile Number : </label> <br /><br />
+        <input type="number" name="MobileNumber" class="input" required />
+        <br /><br />
 
-                <label for="MobileNumber">Mobile Number : </label> <br><br>
-                <input type="number" name="MobileNumber" class="input" required>        
-                <br><br>
+        <label for="Salary">Salry : </label> <br /><br />
+        <input
+          type="number"
+          name="Salary"
+          class="input"
+          placeholder="LKR"
+          required
+        />
+        <br /><br />
 
-                <label for="Salary">Salry : </label> <br><br>
-                <input type="number" name="Salary" class="input" placeholder="LKR" required>        
-                <br><br>
-                
-            <label for="JobType">Job Type : </label>     <br><br>
-            <select class="select" name="JobType">
-                <option  required> Manager </option>
-                <option  required> Security</option> 
-                <option  required> Delivery man </option>       
-                <br><br>
-            </select>
+        <label for="JobType">Job Type : </label> <br /><br />
+        <select class="select" name="JobType">
+          <option required>Manager</option>
+          <option required>Security</option>
+          <option required>Delivery man</option>
+          <br /><br />
+        </select>
 
-            <br><br>
+        <br /><br />
 
-            <label for="Branch">Branch : </label>     <br><br>
-            <select class="select" name="Branch">
-                <option  required> Batticaloa </option>
-                <option  required> Colombo </option>
-                <option  required> Kandy </option> 
-                <option  required> Galle </option>        
-            </select>
+        <label for="Branch">Branch : </label> <br /><br />
+        <select class="select" name="Branch">
+          <option required>Batticaloa</option>
+          <option required>Colombo</option>
+          <option required>Kandy</option>
+          <option required>Galle</option>
+        </select>
 
-            <br><br><br>
-                <input type="checkbox" name="agree[]" value="agree" required > Agree to save changes <br><br><br>
-                <input type="submit" value=" Submit " class="input"> <br>
-            
-            </div>
+        <br /><br /><br />
+        <input type="checkbox" name="agree[]" value="agree" required /> Agree to
+        save changes <br /><br /><br />
+        <input type="submit" value=" Submit " class="input" /> <br />
+      </div>
+    </form>
 
-            </form>
+    <br />
+    <br />
+  </body>
 
-    <br>
-    <br>
-    </body>
-
-    <footer>
-        <p>&copy; 2023 Online Shopping, Sri Lanka </p>
-    </footer>
-
+  <footer>
+    <p>&copy; 2023 Online Shopping, Sri Lanka</p>
+  </footer>
 </html>

@@ -29,78 +29,76 @@
         </div>
 
         <div>
-            <ul class="NavigationBar">
-                <li ><a href=Home.php> Home </a></li>
-                <li ><a href=cart.php> Cart </a></li>
-                <li ><a href=orderNow.php> Order Now </a></li>
-                <li ><a href=Track_order.html> Track the Order </a></li>
-                <li ><a href=contacts.html> Contacts Us </a></li>
-                <li ><a href=Rating.html> Rate Us </a></li>
-                <li ><a href=Aboutus.html> About Us </a></li>   
-            </ul>    
-        </div>
+    <ul class="NavigationBar">
+        <li><a href="Home.php">Home</a></li>
+        <li><a href="cart.php">Cart</a></li>
+        <li><a href="orderHistory.php">Order History</a></li>
+        <li><a href="Track_order.html">Track the Order</a></li>
+        <li><a href="contacts.html">Contacts Us</a></li>
+        <li><a href="RatingForm.php">Rate Us</a></li>
+        <li><a href="Aboutus.html">About Us</a></li>
+    </ul>
+</div>
 
 
 <h1 class="signupphp">
 
 
 <?php
+    session_start();
 
-session_start();
+    // Check if the user is logged in (has a `CustomerID` in the session)
+    if (isset($_SESSION['CustomerID'])) {
+        $host = "localhost";
+        $dbname = "project_database";
+        $username = "root";
+        $password = "";
 
-
-// Check if the user is logged in (has a `CustomerID` in the session)
-if (isset($_SESSION['CustomerID'])) {
-    // Establish a database connection (replace with your database configuration)
-    $conn = new mysqli("localhost", "username", "password", "database_name");
-    // Check the connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    // Get the logged-in customer's ID
-    $loggedID = $_SESSION['CustomerID'];
-
-    // Retrieve form data
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $Comments = $_POST["Comments"];
-        $Rating = $_POST["Rating"];
-
-        // Prepare and execute the INSERT query
-        $sql = "INSERT INTO Rating (Customer_ID, Comment, Rating) VALUES (?, ?, ?)";
-        $stmt = $conn->prepare($sql);
-        
-        if ($stmt) {
-            $stmt->bind_param("iss", $loggedID, $Comments, $Rating);
-            if ($stmt->execute()) {
-                echo "Rating submitted successfully!";
-            } else {
-                echo "Error: " . $stmt->error;
-            }
-            $stmt->close();
-        } else {
-            echo "Error: " . $conn->error;
+        // Establish a database connection
+        $conn = new mysqli($host, $username, $password, $dbname);
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
         }
-    }
 
-    $conn->close();
-} else {
-    // User is not logged in, redirect to login page
-    header("Location: login.html");
-    exit; // Always exit after a header redirect
-}
+        // Get the logged-in customer's ID
+        $loggedID = $_SESSION['CustomerID'];
+
+        // Retrieve form data
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $Comments = $_POST["Comments"];
+            $Rating = $_POST["Rating"];
+
+            // Prepare and execute the INSERT query
+            $sql = "INSERT INTO Rating (Customer_ID, Comment, Rating) VALUES (?, ?, ?)";
+            $stmt = $conn->prepare($sql);
+
+
+            if ($stmt) {
+                $stmt->bind_param("ssi", $loggedID, $Comments, $Rating);
+                if ($stmt->execute()) {
+                    echo "Rating submitted successfully!";
+                } else {
+                    echo "Error: " . $stmt->error;
+                }
+                $stmt->close();
+            } else {
+                echo "Error: " . $conn->error;
+            }
+        }
+
+        $conn->close();
+    } else {
+        // User is not logged in, redirect to login page
+        header("Location: login.html");
+        exit; // Always exit after a header redirect
+    }
 ?>
 
 
 </h1>
-
-
     <br>
-    <br>
-              
-
+    <br>        
     </body>
-
 
     <footer>
         <p>&copy; 2023 Online Shopping, Sri Lanka </p>
