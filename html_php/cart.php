@@ -15,9 +15,22 @@
         <div class="row">
             <div class="col-sm-1"> <img class="logoimg" src="../images/LogoFinal.jpg" alt="Logo"> </div>
             <div class="col-sm-8 text-danger"> <h2>The largest online shopping platform in Sri Lanka.</h2> </div>
-            <div class="col-sm-1"> <a href="Login.html"> <button type="button" class="btn btn-outline-primary"> Log in </button> </a> </div>
-            <div class="col-sm-1"> <a href="Signup.html"><button type="button" class="btn btn-outline-primary"> Sign up </button></a> </div>
-            <div class="col-sm-1"> <a href="admin.html"> <button type="button" class="btn btn-outline-primary"> Admin </button></a> </div>
+        <?php
+        session_start();
+
+        if (isset($_SESSION['CustomerID'])) {
+            // User is logged in
+            echo '<div class="col-sm-1"> </div>';
+            echo '<div class="col-sm-1">  </div>';
+            echo '<div class="col-sm-1"> <a href="Logout.php"> <button type="button" class="btn btn-outline-primary"> Log out </button> </a> </div>';
+            
+        } else {
+            // User is not logged in
+            echo '<div class="col-sm-1"> <a href="Login.html"> <button type="button" class="btn btn-outline-primary"> Log in </button> </a> </div>';
+            echo '<div class="col-sm-1"> <a href="Signup.html"><button type="button" class="btn btn-outline-primary"> Sign up </button></a> </div>';
+            echo '<div class="col-sm-1"> <a href="admin.html"> <button type="button" class="btn btn-outline-primary"> Admin </button></a> </div>';
+        }
+        ?>
         </div>
     </div>
 
@@ -36,7 +49,7 @@
     <div class="container pt-2">
     <?php
     
-session_start();
+
 
     // Establish a database connection
     $host = "localhost";
