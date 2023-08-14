@@ -92,6 +92,7 @@
                         <li ><a href="ProductModify.html" class="selection">Modify Product Details</a></li><br><br>
 
                         <li ><a href="package_status.html" class="selection">Modify Package Status</a></li><br><br>
+                        <li ><a href="Ordersview.php" class="selection">Orders View</a></li><br><br>
                     </ul>
                 </div>
                 <?php
