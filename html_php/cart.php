@@ -35,7 +35,23 @@
 
     <div class="container pt-2">
     <?php
+    
 session_start();
+
+    // Establish a database connection
+    $host = "localhost";
+    $dbname = "project_database";
+    $username = "root";
+    $passwordHost = "";
+
+    
+
+    $conn = mysqli_connect($host, $username, $passwordHost, $dbname);
+
+    // Check if the connection was successful
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
 
 if (isset($_GET["del"])) {
     foreach ($_SESSION['cart'] as $key => $value) {
@@ -75,19 +91,42 @@ if (isset($_POST['add_to_cart'])) {
 
         echo '<form action="ordernow.php" method="post">';
         echo '<table class="table table-striped">';
-        echo '<tr><th>Product ID</th><th>Product Name</th><th>Selling Price</th><th>Quantity</th><th>Action</th></tr>';
+        echo '<tr><th>Product ID</th><th>Product Name</th><th>Price</th><th>Quantity</th><th>Available</th><th>Action</th></tr>';
 
         $totalAmount = 0;
         foreach ($_SESSION['cart'] as $index => $cartItem) {
+            $productID = $cartItem['productID'];
+            $query = "SELECT Quantity FROM stock WHERE ProductID = ?";
+            
+            // Prepare and execute the query
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("i", $productID);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            
+            // Fetch the available quantity
+            $row = $result->fetch_assoc();
+            $availableQuantity = $row['Quantity'];
+        
             echo '    <tr>';
             echo '        <td>' . $cartItem['productID'] . '</td>';
             echo '        <td>' . $cartItem['productName'] . '</td>';
             echo '        <td>' . $cartItem['sellingPrice'] . '</td>';
-            echo '        <td><input type="number" name="quantity[' . $index . ']" value="' . $cartItem['quantity'] . '" min="1" style="width: 60px;"required></td>';
+
+            if ($availableQuantity <= 0) {
+                echo '        <td></td>';
+                echo '        <td><span style="color: red;">Out of Stock</span></td>';
+            } else {
+                echo '        <td><input type="number" name="quantity[' . $index . ']" value="' . $cartItem['quantity'] . '" min="1"  max="' . $availableQuantity . '" style="width: 60px;" required></td>';
+                echo '        <td>' . $availableQuantity . '</td>';
+            }
+        
+            
             echo '        <td><a href="cart.php?del=' . $cartItem['productID'] . '">Remove</a></td>';
             echo '        <input type="hidden" name="productID[' . $index . ']" value="' . $cartItem['productID'] . '">';
             echo '    </tr>';
         }
+        
         echo '</table>';
 
         echo '<div>';
