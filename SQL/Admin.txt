@@ -4,3 +4,6 @@ CREATE TABLE `admin` (
   PRIMARY KEY (`AdminID`)
 );
 
+INSERT INTO `admin` (`AdminID`, `Password`) VALUES
+('Admin_01', 'Admin01'),
+('Admin_02', 'Admin02');
