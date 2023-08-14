@@ -1,0 +1,1 @@
+Images of products are uploaded and saved with new names in this folder. The corresponding names are stored in the database, and we retrieve the images from this folder using the names from the database.
