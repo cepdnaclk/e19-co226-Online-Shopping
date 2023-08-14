@@ -64,7 +64,6 @@ $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) > 0) {
     // Loop through each row and print employee details
     while ($row = mysqli_fetch_assoc($result)) {
-        echo "Branch ID: " . $row["BranchID"] . "<br>";
         echo "Product ID: " . $row["ProductID"] . "<br>";
         echo "Quantity: " . $row["Quantity"] . "<br>";
         echo "<br>";

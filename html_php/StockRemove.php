@@ -53,18 +53,35 @@ if (!$conn) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve the submitted ProductID from the form
+    // Retrieve the submitted ProductID and Quantity from the form
     $ProductID = $_POST["ProductID"];
-    $BranchID = $_POST["BranchID"];
+    $Quantity = $_POST["Quantity"];
 
-    // Construct the SQL query to delete the Product from the database
-    $sql = "DELETE FROM Stock WHERE ProductID = '$ProductID' AND BranchID ='$BranchID' ";
+    // Retrieve the current available quantity from the database
+    $sqlGetAvailableQuantity = "SELECT Quantity FROM stock WHERE ProductID=?";
+    $stmtAvailableQuantity = mysqli_stmt_init($conn);
 
-    // Execute the query
-    if (mysqli_query($conn, $sql)) {
-        echo "Product removed from stock successfully.";
+    mysqli_stmt_prepare($stmtAvailableQuantity, $sqlGetAvailableQuantity);
+    mysqli_stmt_bind_param($stmtAvailableQuantity, "i", $ProductID);
+    mysqli_stmt_execute($stmtAvailableQuantity);
+    mysqli_stmt_bind_result($stmtAvailableQuantity, $availableQuantity);
+    mysqli_stmt_fetch($stmtAvailableQuantity);
+    mysqli_stmt_close($stmtAvailableQuantity);
+
+    if ($availableQuantity >= $Quantity) {
+        // Update the available quantity in the stock table
+        $newAvailableQuantity = $availableQuantity - $Quantity;
+        $sqlUpdateStock = "UPDATE stock SET Quantity=? WHERE ProductID=?";
+        $stmtUpdateStock = mysqli_stmt_init($conn);
+
+        mysqli_stmt_prepare($stmtUpdateStock, $sqlUpdateStock);
+        mysqli_stmt_bind_param($stmtUpdateStock, "ii", $newAvailableQuantity, $ProductID);
+        mysqli_stmt_execute($stmtUpdateStock);
+        mysqli_stmt_close($stmtUpdateStock);
+
+        echo "Product quantity updated successfully.";
     } else {
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        echo "Insufficient quantity in stock.";
     }
 }
 

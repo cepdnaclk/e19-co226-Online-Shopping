@@ -46,49 +46,51 @@
 
 <?php
 
-$Comments = $_POST["Comments"];
-$Rating = $_POST["Rating"];
+session_start();
 
 
-$host = "localhost";
-$dbname = "project_database";
-$username = "root";
-$password = "";
+// Check if the user is logged in (has a `CustomerID` in the session)
+if (isset($_SESSION['CustomerID'])) {
+    // Establish a database connection (replace with your database configuration)
+    $conn = new mysqli("localhost", "username", "password", "database_name");
+    // Check the connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
 
-$conn = mysqli_connect(
-    $host, 
-    $username,
-    $password,
-    $dbname
-);
+    // Get the logged-in customer's ID
+    $loggedID = $_SESSION['CustomerID'];
 
+    // Retrieve form data
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $Comments = $_POST["Comments"];
+        $Rating = $_POST["Rating"];
 
-if (mysqli_connect_errno()){
-    die("Connection error: ". mysqli_connect_error());
+        // Prepare and execute the INSERT query
+        $sql = "INSERT INTO Rating (Customer_ID, Comment, Rating) VALUES (?, ?, ?)";
+        $stmt = $conn->prepare($sql);
+        
+        if ($stmt) {
+            $stmt->bind_param("iss", $loggedID, $Comments, $Rating);
+            if ($stmt->execute()) {
+                echo "Rating submitted successfully!";
+            } else {
+                echo "Error: " . $stmt->error;
+            }
+            $stmt->close();
+        } else {
+            echo "Error: " . $conn->error;
+        }
+    }
+
+    $conn->close();
+} else {
+    // User is not logged in, redirect to login page
+    header("Location: login.html");
+    exit; // Always exit after a header redirect
 }
-
-
-$sql = "INSERT INTO Rating(Comment, Rating) VALUES (?,?)";
-
-$stmt = mysqli_stmt_init($conn);
-
-if (! mysqli_stmt_prepare($stmt, $sql)){
-    die(mysqli_error($conn));
-}
-
-mysqli_stmt_bind_param(
-    $stmt, "si",
-    $Comments,
-    $Rating
-);
-
-mysqli_stmt_execute($stmt);
-
-echo "Hello".", ".$_POST["FirstName"]." ".$_POST["LastName"]." !";
-echo "<br>"."<br>";
-echo "Thank you for sign up our website"; 
-
 ?>
+
 
 </h1>
 

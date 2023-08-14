@@ -9,26 +9,11 @@
         <link rel="stylesheet" type="text/css" href="../css/styles.css" />
     </head>
 
-    <body>
-
-        <div class="header">
-            <div class="logocontainer">
-            <a href="Home.php">
-              <img class="logoimg" src="../images/LogoFinal.jpg" alt="Logo">
-            </a>
-              <h2>The largest online shopping platform in Sri Lanka.</h2>
-            </div>            Online Shopping
-        </title>
-        <link rel = "icon" href = Logo.jpg type = "image/x-icon">
-        <link rel="stylesheet" type="text/css" href="test.css" />
-        <link rel="stylesheet" type="text/css" href="styles.css" />
-    </head>
-
-    <body>
+<body>
     <div class="header">
             <div class="logocontainer">
             <a href="Home.php">
-              <img class="logoimg" src="LogoFinal.jpg" alt="Logo">
+              <img class="logoimg" src="../images/LogoFinal.jpg" alt="Logo">
             </a>
               <h2>The largest online shopping platform in Sri Lanka.</h2>
             </div>
@@ -52,15 +37,7 @@
             </ul>    
         </div>
 
-            <?php
-
-$ProductID = $_POST["ProductID"];
-$SupplierID = $_POST["SupplierID"];
-$Date = $_POST["Date"];
-$Quantity = filter_input(INPUT_POST, "Quantity", FILTER_VALIDATE_INT);
-$TotalPrice = filter_input(INPUT_POST, "TotalPrice", FILTER_VALIDATE_INT);
-$BranchID = $_POST["BranchID"];
-
+        <?php
 $host = "localhost";
 $dbname = "project_database";
 $username = "root";
@@ -72,37 +49,68 @@ if (mysqli_connect_errno()) {
     die("Connection error: " . mysqli_connect_error());
 }
 
-$sql = "INSERT INTO Supply (SupplierID, ProductID, Date, Total) VALUES (?,?,?,?)";
-$stmt = mysqli_stmt_init($conn);
+$ProductID = $_POST["ProductID"];
+$SupplierID = $_POST["SupplierID"];
+$Date = $_POST["Date"];
+$Quantity = filter_input(INPUT_POST, "Quantity", FILTER_VALIDATE_INT);
+$TotalPrice = filter_input(INPUT_POST, "TotalPrice", FILTER_VALIDATE_INT);
 
-if ($TotalPrice === null) {
-    $TotalPrice = 0; // Assign a default value if TotalPrice is null
+// Check if the product already exists in Stock
+$sqlCheckExisting = "SELECT Quantity FROM Stock WHERE ProductID=?";
+$stmtCheckExisting = mysqli_stmt_init($conn);
+
+mysqli_stmt_prepare($stmtCheckExisting, $sqlCheckExisting);
+mysqli_stmt_bind_param($stmtCheckExisting, "i", $ProductID);
+mysqli_stmt_execute($stmtCheckExisting);
+mysqli_stmt_store_result($stmtCheckExisting);
+
+if (mysqli_stmt_num_rows($stmtCheckExisting) > 0) {
+    // Product exists in Stock, update the quantity
+    $sqlUpdateStock = "UPDATE Stock SET Quantity=Quantity+? WHERE ProductID=?";
+    $stmtUpdateStock = mysqli_stmt_init($conn);
+    
+    mysqli_stmt_prepare($stmtUpdateStock, $sqlUpdateStock);
+    mysqli_stmt_bind_param($stmtUpdateStock, "ii", $Quantity, $ProductID);
+    mysqli_stmt_execute($stmtUpdateStock);
+    
+    mysqli_stmt_close($stmtUpdateStock);
+} else {
+    // Product doesn't exist in Stock, insert a new record
+    $sqlInsertStock = "INSERT INTO Stock(ProductID, Quantity) VALUES (?, ?)";
+    $stmtInsertStock = mysqli_stmt_init($conn);
+    
+    mysqli_stmt_prepare($stmtInsertStock, $sqlInsertStock);
+    mysqli_stmt_bind_param($stmtInsertStock, "ii", $ProductID, $Quantity);
+    mysqli_stmt_execute($stmtInsertStock);
+    
+    mysqli_stmt_close($stmtInsertStock);
 }
 
-mysqli_stmt_prepare($stmt, $sql);
-mysqli_stmt_bind_param($stmt, "iisd", $SupplierID, $ProductID, $Date, $TotalPrice);
-mysqli_stmt_execute($stmt);
+// Insert supply information
+$sqlSupply = "INSERT INTO Supply (SupplierID, ProductID, Date, Total, Quantity) VALUES (?,?,?,?,?)";
+$stmtSupply = mysqli_stmt_init($conn);
 
-$sql = "INSERT INTO Stock(BranchID, ProductID, Quantity) VALUES (?,?,?)";
-$stmt = mysqli_stmt_init($conn);
+if ($TotalPrice === null) {
+    $TotalPrice = 0;
+}
 
-mysqli_stmt_prepare($stmt, $sql);
-mysqli_stmt_bind_param($stmt, "iis", $BranchID, $ProductID, $Quantity);
-mysqli_stmt_execute($stmt);
+mysqli_stmt_prepare($stmtSupply, $sqlSupply);
+mysqli_stmt_bind_param($stmtSupply, "iisdi", $SupplierID, $ProductID, $Date, $TotalPrice, $Quantity);
+mysqli_stmt_execute($stmtSupply);
 
 echo "Changes Successful";
 
+mysqli_stmt_close($stmtSupply);
 mysqli_close($conn);
 ?>
 
-
     <br><br>
     
-    </body>
+ 
     <footer>
         <p>&copy; 2023 Online Shopping, Sri Lanka </p>
     </footer>
-
+    </body>
 </html>
 
 

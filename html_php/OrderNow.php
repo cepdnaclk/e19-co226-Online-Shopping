@@ -91,7 +91,7 @@
         // Insert the order details into the database using prepared statements
         $stmt = $conn->prepare("INSERT INTO `order` (OrderNo, Total_Amount, Payment_Method, Order_Date, Expected_Delivery_Date, Customer_ID, Delivery_Address_No, Delivery_Address, Delivery_Address_city) 
         VALUES (?, ?, ?, CURDATE(), ?, ?, ?, ? , ?)");
-        $stmt->bind_param("sdsdsss", $orderNumber, $totalAmount, $paymentMethod, $expectedDeliveryDate, $customerID, $Delivery_Address1, $Delivery_Address2, $Delivery_Address3);
+        $stmt->bind_param("sdssssss", $orderNumber, $totalAmount, $paymentMethod, $expectedDeliveryDate, $customerID, $Delivery_Address1, $Delivery_Address2, $Delivery_Address3);
         $stmt->execute();
 
         // Insert the order items into the database using prepared statements

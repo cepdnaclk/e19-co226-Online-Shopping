@@ -1,78 +1,63 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>
-            Online Shopping
-        </title>
-        <link rel = "icon" href = Logo.jpg type = "image/x-icon">
-        <link rel="stylesheet" type="text/css" href="../css/test.css" />
-        <link rel="stylesheet" type="text/css" href="../css/styles.css" />
-        <link rel="stylesheet" type="text/css" href="../css/select_style.css" />
+  <head>
+    <title>Online Shopping</title>
+    <link rel="icon" href="Logo.jpg" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="../css/test.css" />
+    <link rel="stylesheet" type="text/css" href="../css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="../css/select_style.css" />
+  </head>
 
-    </head>
+  <body>
+    <div class="header">
+      <div class="logocontainer">
+        <a href="Home.php">
+          <img class="logoimg" src="../images/LogoFinal.jpg" alt="Logo" />
+        </a>
+        <h2>The largest online shopping platform in Sri Lanka.</h2>
+      </div>
 
-    <body>
-        <div class="header">
-            <div class="logocontainer">
-            <a href="Home.php">
-              <img class="logoimg" src="../images/LogoFinal.jpg" alt="Logo">
-            </a>
-              <h2>The largest online shopping platform in Sri Lanka.</h2>
-            </div>
-        
-            <ul class="login">
-              <li><a href="Login.html">Log in</a></li>
-              <li><a href="Signup.html">Sign up</a></li>
-              <li><a href="admin.html">Admin</a></li>
-            </ul>
-        </div>
+      <ul class="login">
+        <li><a href="Login.html">Log in</a></li>
+        <li><a href="Signup.html">Sign up</a></li>
+        <li><a href="admin.html">Admin</a></li>
+      </ul>
+    </div>
 
-        <div>
-            <ul class="NavigationBar">
-                <li ><a href=Home.php> Home </a></li>
-                <li ><a href=cart.php> Cart </a></li>
-                <li ><a href=orderNow.php> Order Now </a></li>
-                <li ><a href=Track_order.html> Track the Order </a></li>
-                <li ><a href=contacts.html> Contacts Us </a></li>
-                <li ><a href=Rating.html> Rate Us </a></li>
-                <li ><a href=Aboutus.html> About Us </a></li>   
-            </ul>    
-        </div>
+    <div>
+      <ul class="NavigationBar">
+        <li><a href="Home.php"> Home </a></li>
+        <li><a href="cart.php"> Cart </a></li>
+        <li><a href="orderNow.php"> Order Now </a></li>
+        <li><a href="Track_order.html"> Track the Order </a></li>
+        <li><a href="contacts.html"> Contacts Us </a></li>
+        <li><a href="Rating.html"> Rate Us </a></li>
+        <li><a href="Aboutus.html"> About Us </a></li>
+      </ul>
+    </div>
 
-        <form action = "StockRemove.php" method = "post">
+    <form action="StockRemove.php" method="post">
+      <div class="form">
+        <label for="ProductID">Product ID : </label> <br /><br />
+        <input type="text" name="ProductID" required class="input" />
+        <br /><br />
 
-            <div class="form">    
-                <label for="ProductID">Product ID : </label>   <br><br>
-                <input type="text" name="ProductID" required class="input">        
-                <br><br>
+        <label for="Quantity">Quantity : </label> <br /><br />
+        <input type="number" name="Quantity" required class="input" />
+        <br /><br />
 
-                <label for="Quantity">Quantity : </label>     <br><br>
-                <input type="number" name="Quantity" required class="input">            
-                <br><br>
+        <label for="agree"></label>
+        <input type="checkbox" name="agree[]" value="agree" required /> Agree to
+        change the stock Quantities <br /><br />
+        <input type="submit" value=" Submit" class="input" /> <br />
+      </div>
+    </form>
 
-                <label for="BranchID">Branch ID : </label>     <br><br>
-                <input type="text" name="BranchID" required class="input">            
-                <br><br>
+    <br />
+    <br />
+  </body>
 
-
-                <label for="agree"></label>
-                <input type="checkbox" name="agree[]" value="agree" required> Agree to change the stock Quantities <br><br>
-                <input type="submit" value=" Submit" class="input"> <br>
-            
-            </div>
-
-            </form>
-
-    <br>
-    <br>
-    </body>
-
-
-    <footer>
-        <p>&copy; 2023 Online Shopping, Sri Lanka </p>
-    </footer>
-
+  <footer>
+    <p>&copy; 2023 Online Shopping, Sri Lanka</p>
+  </footer>
 </html>
-
-
-
