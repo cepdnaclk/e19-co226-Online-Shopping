@@ -68,6 +68,10 @@
             if ($providedPassword === $storedPassword) {
                 // Passwords match, authentication successful
                 // echo "Authentication successful!";
+
+                session_start();
+                $_SESSION['Admin'] = $AdminID;
+
                 ?>
                 <div class="middle">
                     <ul>

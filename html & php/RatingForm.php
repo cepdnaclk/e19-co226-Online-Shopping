@@ -71,9 +71,9 @@ echo '<form action="rating.php" method=post>
     <label for="Rating" >Rate us : </label>
     <input type="radio" name="Rating" value="1"> 1 &nbsp;
     <input type="radio" name="Rating" value="2"> 2 &nbsp;
-    <input type="radio" name="Rating" value="1"> 3 &nbsp;
-    <input type="radio" name="Rating" value="2"> 4 &nbsp;
-    <input type="radio" name="Rating" value="1"> 5 &nbsp;
+    <input type="radio" name="Rating" value="3"> 3 &nbsp;
+    <input type="radio" name="Rating" value="4"> 4 &nbsp;
+    <input type="radio" name="Rating" value="5"> 5 &nbsp;
     <br><br><br>
 
     <input type="submit" value=" Submit " > <br>

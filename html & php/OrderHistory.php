@@ -101,6 +101,7 @@
             }
         } else {
             // User is not logged in, redirect to login page
+            echo "<script>alert ('Please, log in to see order History.') </script>";
             header("Location: login.html");
             exit; // Always exit after a header redirect
         }

@@ -66,7 +66,7 @@
             // Display the product details
             echo '<div align="middle">';
             echo '<h1>' . $row['ProductName'] . '</h1>';
-            echo '<img src="../uploads/' . $row['image_url'] . '" alt="Product Image">';
+            echo '<img src="../uploads/' . $row['image_url'] . '" alt="Product Image" width="600px" height="500px">';
             echo '<p class="offer"><strong>Price : </strong> LKR ' . number_format($row['Tag_Price'], 2) . '</p>';
             echo '<p class="price"><strong>Price : </strong> LKR ' . number_format($row['Selling_Price'], 2) . '</p>';
             echo '<p><strong>Description:</strong> ' . $row['Description'] . '</p>';

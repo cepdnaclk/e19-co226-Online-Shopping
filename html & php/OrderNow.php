@@ -66,6 +66,16 @@
             $sellingPrice = $cartItems[$index]['sellingPrice'];
             $totalAmount += $sellingPrice * $newQuantity;
 
+            
+            $sqlUpdateStock = "UPDATE Stock SET Quantity=Quantity-? WHERE ProductID=?";
+            $stmtUpdateStock = mysqli_stmt_init($conn);
+            
+            mysqli_stmt_prepare($stmtUpdateStock, $sqlUpdateStock);
+            mysqli_stmt_bind_param($stmtUpdateStock, "ii", $newQuantity, $productID);
+            mysqli_stmt_execute($stmtUpdateStock);
+            mysqli_stmt_close($stmtUpdateStock);
+
+
             // Update the product quantity in the database
             $stmt = $conn->prepare("UPDATE contain SET No_of_Product = ? WHERE ProductID = ? AND OrderNo = ?");
             $stmt->bind_param("iis", $newQuantity, $productID, $orderNumber);

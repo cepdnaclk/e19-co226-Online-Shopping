@@ -36,6 +36,7 @@
             echo '<li><a href="Signup.html">Sign up</a></li>';
             echo '<li><a href="admin.html">Admin</a></li>';
         }
+        
         ?>
     </ul>
 </div>

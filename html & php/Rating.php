@@ -76,7 +76,10 @@
             if ($stmt) {
                 $stmt->bind_param("ssi", $loggedID, $Comments, $Rating);
                 if ($stmt->execute()) {
-                    echo "Rating submitted successfully!";
+                    echo "<script>alert ('Your Rating is submitted.') </script>";
+                    header('Location: Home.php');
+                    exit; // Make sure to exit after the header redirection
+
                 } else {
                     echo "Error: " . $stmt->error;
                 }
