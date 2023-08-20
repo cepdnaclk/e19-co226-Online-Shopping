@@ -63,20 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mobileNumber = $_POST["MobileNumber"];
     $salary = $_POST["Salary"];
     $jobType = $_POST["JobType"];
-    $branch = $_POST["Branch"];
 
-    // Retrieve the BranchID based on the BranchName
-    $branchQuery = "SELECT BranchID FROM branches WHERE BranchName = '$branch'";
-    $result = mysqli_query($conn, $branchQuery);
-
-    if (mysqli_num_rows($result) > 0) {
-        $row = mysqli_fetch_assoc($result);
-        $branchID = $row["BranchID"];
-    } else {
-        echo "Error: Branch not found";
-        // You may consider redirecting the user back to the form or showing an appropriate error message
-        exit;
-    }
 
     // Construct the SQL query to update the employee information in the database
     $sql = "UPDATE employee SET 
@@ -85,8 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 Address = '$address',
                 ContactNo = '$mobileNumber',
                 Salary = '$salary',
-                JobType = '$jobType',
-                BranchID = '$branchID'
+                JobType = '$jobType'
             WHERE EmployeeID = '$employeeID'";
 
     // Execute the query
@@ -101,8 +87,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 mysqli_close($conn);
 ?>
 
-
- 
     <br><br>
     
     </body>

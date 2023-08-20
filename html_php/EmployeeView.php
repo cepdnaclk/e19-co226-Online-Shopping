@@ -68,7 +68,6 @@ if (mysqli_num_rows($result) > 0) {
         echo "Salary: " . $row["Salary"] . "<br>";
         echo "Contact No: " . $row["ContactNo"] . "<br>";
         echo "Address: " . $row["Address"] . "<br>";
-        echo "Branch ID: " . $row["BranchID"] . "<br>";
         echo "<br>";
     }
 } else {
