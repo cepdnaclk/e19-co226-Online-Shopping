@@ -48,7 +48,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mobileNumber = $_POST["MobileNumber"];
     $salary = $_POST["Salary"];
     $jobType = $_POST["JobType"];
-    $branch = $_POST["Branch"];
 
     // Establish a connection to the database
     $host = "localhost";
@@ -63,22 +62,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // Prepare and execute the SQL query to retrieve the BranchID based on BranchName
-    $branchQuery = "SELECT BranchID FROM branches WHERE BranchName = '$branch'";
-    $result = $conn->query($branchQuery);
-
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $branchID = $row["BranchID"];
-    } else {
-        echo "Error: Branch not found";
-        // You may consider redirecting the user back to the form or showing an appropriate error message
-        exit;
-    }
-
     // Prepare and execute the SQL query to insert the employee details
-    $sql = "INSERT INTO employee (FirstName, LastName, Address, ContactNo, Salary , JobType, BranchID)
-            VALUES ('$firstName', '$lastName', '$address', '$mobileNumber', '$salary', '$jobType', '$branchID')";
+    $sql = "INSERT INTO employee (FirstName, LastName, Address, ContactNo, Salary , JobType)
+            VALUES ('$firstName', '$lastName', '$address', '$mobileNumber', '$salary', '$jobType')";
 
     if ($conn->query($sql) === TRUE) {
         echo "Employee added successfully.";
@@ -90,9 +76,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 }
 ?>
-
-
- 
     <br><br>
     
     </body>
