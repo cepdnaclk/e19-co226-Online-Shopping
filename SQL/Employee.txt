@@ -1,10 +1,10 @@
-CREATE TABLE `customer` (
-  `Customer_ID` varchar(100) NOT NULL AUTO INCREMENT,
+CREATE TABLE `Employee` (
+  `Employee_ID` varchar(100) NOT NULL AUTO INCREMENT,
   `FirstName` varchar(100) NOT NULL,
   `LastName` varchar(100) NOT NULL,
   `Address` varchar(100) NOT NULL,
   `ContactNo` int(100) NOT NULL,
   `Salary` int(100) NOT NULL,
   `JobType` varchar(100) NOT NULL,
-  PRIMARY KEY (`Customer_ID`)
+  PRIMARY KEY (`Employee_ID`)
 );
