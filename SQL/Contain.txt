@@ -1,4 +1,4 @@
-CREATE TABLE `cart` (
+CREATE TABLE `contain` (
   `ProductID` int(11) NOT NULL,
   `No_of_Product` int(100) NOT NULL,
 );
